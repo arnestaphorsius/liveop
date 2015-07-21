@@ -33,7 +33,7 @@ def sqlalchemy_error(error):
 
 
 @app.errorhandler(404)
-def not_found(error):
+def not_found():
     return make_response(jsonify({'error': 'not found'}), 404)
 
 

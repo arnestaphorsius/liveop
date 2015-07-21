@@ -17,13 +17,14 @@ def get_bag_object(object_id):
     except SQLAlchemyError as exc:
         return sqlalchemy_error(exc)
 
-    if db_object is None: return not_found(404)
+    if db_object is None:
+        return not_found()
 
     return pretty_print(db_object.serialize())
 
 
 @app.route('/api/objecten', methods=['GET'])
-def get_bag_object_by_adres():
+def get_bag_object_by_address():
     app.config['SQLALCHEMY_DATABASE_URI'] = app.config['DB_ALCHEMY_URI_LOC']
 
     x_coord = request.args.get('x', None)
@@ -57,7 +58,7 @@ def get_bag_object_by_adres():
         return sqlalchemy_error(exc)
 
     if db_objects is None or len(db_objects) == 0:
-        return not_found(404)
+        return not_found()
     elif len(db_objects) == 1:
         return pretty_print(db_objects[0].serialize())
 
