@@ -1,19 +1,19 @@
 from sqlalchemy import inspect, BigInteger, Column, Integer, Text
 from app import app, db
 
+
 class Serializer(object):
-    
     def serialize(self):
         return {c: getattr(self, c) for c in inspect(self).attrs.keys()}
-    
+
     @staticmethod
     def serialize_list(l):
-        return [m.serialize() for m in l]        
+        return [m.serialize() for m in l]
+
 
 class Object(db.Model, Serializer):
-    
     __tablename__ = app.config['DB_BAA_TABLENAME']
-    
+
     hub_object_id = Column(Integer)
     hub_object_bk = Column(BigInteger)
     hub_object_naam = Column(Text)
@@ -48,7 +48,7 @@ class Object(db.Model, Serializer):
     geometry_center_geo = Column(Text)
     geometry_rd_x = Column(Text)
     geometry_rd_y = Column(Text)
-    #geometry_center_geo = Column(Geometry(geometry_type='POINT', srid=28992))
-    
+    # geometry_center_geo = Column(Geometry(geometry_type='POINT', srid=28992))
+
     def __repr__(self):
         return '<BAG id: %r>' + self.bag_id

@@ -1,7 +1,7 @@
 # lokale database settings
 DB_NAME = 'postgres'
 DB_USER = 'postgres'
-DB_HOST = 'localhost' # without port number
+DB_HOST = 'localhost'  # without port number
 DB_PASSWORD = 'password'
 DB_ALCHEMY_URI_LOC = 'postgresql://' + DB_USER + ':' + DB_PASSWORD + '@' + DB_HOST + '/' + DB_NAME
 
