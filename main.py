@@ -57,8 +57,8 @@ def get_bag_object_by_address():
     except SQLAlchemyError as exc:
         return sqlalchemy_error(exc)
 
-    if db_objects is None or len(db_objects) == 0:
-        return not_found()
+    if db_objects is None:
+        return internal_server_error()
     elif len(db_objects) == 1:
         return pretty_print(db_objects[0].serialize())
 
